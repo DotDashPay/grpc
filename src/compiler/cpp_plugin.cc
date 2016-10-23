@@ -233,8 +233,7 @@ class CppGrpcGenerator : public grpc::protobuf::compiler::CodeGenerator {
         grpc_cpp_generator::GetHeaderEpilogue(&pbfile, generator_parameters);
     std::unique_ptr<grpc::protobuf::io::ZeroCopyOutputStream> header_output(
         context->Open(generator_parameters.header_filename));
-    grpc::protobuf::io::CodedOutputStream header_coded_out(
-        header_output.get());
+    grpc::protobuf::io::CodedOutputStream header_coded_out(header_output.get());
     header_coded_out.WriteRaw(header_code.data(), header_code.size());
 
     grpc::string source_code =
