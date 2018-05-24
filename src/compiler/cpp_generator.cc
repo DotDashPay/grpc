@@ -84,9 +84,8 @@ void PrintIncludes(grpc_generator::Printer* printer,
   }
 }
 
-grpc::string GetHeaderPrologue(File *file, const Parameters& params) {
 grpc::string GetHeaderPrologue(grpc_generator::File* file,
-                               const Parameters& /*params*/) {
+                               const Parameters& params) {
   grpc::string output;
   {
     // Scope the output stream so it closes and finalizes output to the string.
@@ -1062,9 +1061,9 @@ void PrintHeaderService(grpc_generator::Printer* printer,
   printer->Print(service->GetTrailingComments("//").c_str());
 }
 
-void PrintMockHeaderService(Printer *printer,
-                            const Service *service,
-                            std::map<grpc::string, grpc::string> *vars) {
+void PrintMockHeaderService(grpc_generator::Printer* printer,
+                        const grpc_generator::Service* service,
+                        std::map<grpc::string, grpc::string>* vars) {
   (*vars)["Service"] = service->name();
 
   printer->Print(*vars, "class Mock$Service$Impl : public $Service$::Service {\n");
